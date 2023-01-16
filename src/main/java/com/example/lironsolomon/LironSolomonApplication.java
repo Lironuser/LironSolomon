@@ -8,6 +8,6 @@ public class LironSolomonApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(LironSolomonApplication.class, args);
-    }
 
+    }
 }
