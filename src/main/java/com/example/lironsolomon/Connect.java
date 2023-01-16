@@ -5,7 +5,7 @@ public class Connect {
     public  Connection connect(){
         String jdbcURL = "jdbc:postgresql://localhost:5432/Test";
         String userName = "postgres";
-        String password = "liron1620";
+        String password = "Liron1630";
         try {
             Connection connection = DriverManager.getConnection(jdbcURL, userName, password);
             System.out.printf("There is connection");
