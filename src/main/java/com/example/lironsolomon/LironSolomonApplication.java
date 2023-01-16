@@ -7,9 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class LironSolomonApplication {
 
     public static void main(String[] args) {
-        //SpringApplication.run(LironSolomonApplication.class, args);
-        System.out.println("mother fucker");
-        Connect con = new Connect();
-        con.connect();
+        SpringApplication.run(LironSolomonApplication.class, args);
+        System.out.println("hey");
+
     }
 }

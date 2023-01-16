@@ -18,5 +18,20 @@ public class Connect {
         }
 
     }
+    public void viewTable(Connection con) throws SQLException  {
+        String query = "select * from data";
+        try (Statement stmt = con.createStatement()) {
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                String dd = rs.getString("dd");
+                int ID = rs.getInt("id");
+                System.out.println(dd + ", " +ID);
+            }
+            con.close();
+        } catch (SQLException e) {
+            System.out.printf("Error!!");
+            throw new RuntimeException(e);
+        }
+    }
 
 }
