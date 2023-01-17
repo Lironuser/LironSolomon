@@ -36,7 +36,7 @@ public class Connect {
 
     public void Insert(Connection con,String text)  throws SQLException{
         String Text=text;
-        String query = "insert into Ishambel (Text)\n" +
+        String query = "INSERT INTO Ishambel (Text)\n" +
                 "VALUES ('"+text+"');";
         try (Statement stmt = con.createStatement()) {
             int rs = stmt.executeUpdate(query);
@@ -47,7 +47,18 @@ public class Connect {
         }
     }
     public void Delete(Connection con, String text1) throws SQLException{
-        String query = "delete from Ishambel where text = 'Liron'";
+        String query = "DELETE FROM Ishambel WHERE text = text1";
+        try (Statement stmt = con.createStatement()) {
+            int rs = stmt.executeUpdate(query);
+            con.close();
+        } catch (SQLException e) {
+            System.out.printf("Error!!");
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void Update(Connection con,String text1, String text2)  throws SQLException{
+        String query = "UPDATE Ishambel SET text = text2 WHERE text = text1\n";
         try (Statement stmt = con.createStatement()) {
             int rs = stmt.executeUpdate(query);
             con.close();
