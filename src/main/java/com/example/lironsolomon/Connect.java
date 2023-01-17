@@ -57,10 +57,11 @@ public class Connect {
         }
     }
 
-    public void Update(Connection con,String text1,String text2)  throws SQLException{
+    public void Update(Connection con,String text1,String text2, int id1)  throws SQLException{
         String query=String.format("UPDATE \"test_table\""+
                 "SET text='%s'"+
-                "WHERE id= %s;",text2,text1);
+                "WHERE text= '%s'"+
+                "AND id = %d;",text2,text1, id1);
         try (Statement stmt = con.createStatement()) {
             int rs = stmt.executeUpdate(query);
             con.close();

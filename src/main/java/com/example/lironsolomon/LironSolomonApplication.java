@@ -13,9 +13,9 @@ public class LironSolomonApplication {
         System.out.println("Welcome");
         Connect con = new Connect();
         con.connect();
-        con.Insert(con.connect(),"liron");
+        //con.Insert(con.connect(),"liron");
         //con.Delete(con.connect(),"Liron");
-        con.Update(con.connect(), "liron", "solomon");
+        //con.Update(con.connect(), "liron", "check", 40);
         con.viewTable(con.connect());
     }
 }
