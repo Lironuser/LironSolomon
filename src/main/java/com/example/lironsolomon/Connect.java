@@ -8,7 +8,7 @@ public class Connect {
         String password = "Liron1630";
         try {
             Connection connection = DriverManager.getConnection(jdbcURL, userName, password);
-            System.out.printf("\nConnection complete\n");
+            System.out.println("\nConnection complete\n");
 
             return connection;
         } catch (SQLException e) {
@@ -19,13 +19,13 @@ public class Connect {
 
     }
     public void viewTable(Connection con) throws RuntimeException {
-        String query = "select * from Ishambel";
+        String query = "select * from test_table";
         try (Statement stmt = con.createStatement()) {
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
                 String text = rs.getString("text");
-                int ID = rs.getInt("id");
-                System.out.println(text + ", " +ID);
+                int id = rs.getInt("id");
+                System.out.println(text + ", " +id);
             }
             con.close();
         } catch (SQLException e) {
@@ -34,9 +34,9 @@ public class Connect {
         }
     }
 
-    public void Insert(Connection con,String text)  throws SQLException{
+    public void Insert(Connection con, String text)  throws SQLException{
         String Text=text;
-        String query = "INSERT INTO Ishambel (Text)\n" +
+        String query = "INSERT INTO test_table (Text)\n" +
                 "VALUES ('"+text+"');";
         try (Statement stmt = con.createStatement()) {
             int rs = stmt.executeUpdate(query);
@@ -47,7 +47,7 @@ public class Connect {
         }
     }
     public void Delete(Connection con, String text1) throws SQLException{
-        String query = "DELETE FROM Ishambel WHERE text = text1";
+        String query = "DELETE FROM test_table WHERE text = text1";
         try (Statement stmt = con.createStatement()) {
             int rs = stmt.executeUpdate(query);
             con.close();
@@ -57,13 +57,15 @@ public class Connect {
         }
     }
 
-    public void Update(Connection con,String text1, String text2)  throws SQLException{
-        String query = "UPDATE Ishambel SET text = text2 WHERE text = text1\n";
+    public void Update(Connection con,String text1,String text2)  throws SQLException{
+        String query=String.format("UPDATE \"test_table\""+
+                "SET text='%s'"+
+                "WHERE id= %s;",text2,text1);
         try (Statement stmt = con.createStatement()) {
             int rs = stmt.executeUpdate(query);
             con.close();
         } catch (SQLException e) {
-            System.out.printf("Error!!");
+            System.out.println("Error!!");
             throw new RuntimeException(e);
         }
     }
