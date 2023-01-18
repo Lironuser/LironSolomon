@@ -39,22 +39,31 @@ public class Connect {
         }
     }
 
-    public void Insert(Connection con, String text)  throws SQLException{
-        String Text=text;
-        String query = "INSERT INTO test_table (Text)\n" +
-                "VALUES ('"+text+"');";
+    public void Insert(Connection con, String text1)  throws SQLException{
+        String query = "INSERT INTO test_table (text)" +
+                "VALUES (?)";
         try (Statement stmt = con.createStatement()) {
-            int rs = stmt.executeUpdate(query);
+            con.setAutoCommit(false);
+            PreparedStatement st = con.prepareStatement(query);
+            st.setString(1,text1);
+            st.executeUpdate();
+            st.close();
+            con.commit();
             con.close();
         } catch (SQLException e) {
             System.out.printf("Error!!");
             throw new RuntimeException(e);
         }
     }
-    public void Delete(Connection con, String text1, int id1) throws SQLException{
-        String query = "DELETE FROM test_table WHERE text = text1" + " AND id =id1";
+    public void Delete(Connection con, int id1) throws SQLException{
+        String query = "DELETE FROM test_table WHERE id=?";
         try (Statement stmt = con.createStatement()) {
-            int rs = stmt.executeUpdate(query);
+            con.setAutoCommit(false);
+            PreparedStatement st = con.prepareStatement(query);
+            st.setInt(1,id1);
+            st.executeUpdate();
+            st.close();
+            con.commit();
             con.close();
         } catch (SQLException e) {
             System.out.printf("Error!!");
@@ -62,15 +71,13 @@ public class Connect {
         }
     }
 
-    public void Update(Connection con,String text, int id)  throws SQLException{
-        String query=String.format("UPDATE \"test_table\""+
-                "SET text='%s'"+
-                "WHERE id = %d;",text, id);
+    public void Update(Connection con,String text1, int id1)  throws SQLException{
+        String query= "UPDATE test_table SET text = ?  WHERE id = ?";
         try (Statement stmt = con.createStatement()) {
             con.setAutoCommit(false);
             PreparedStatement st = con.prepareStatement(query);
-            st.setInt(1, id);
-            st.setString(2, text);
+            st.setString(1, text1);
+            st.setInt(2, id1);
             st.executeUpdate();
             st.close();
             con.commit();
