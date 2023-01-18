@@ -10,7 +10,7 @@ public class LironSolomonApplication {
 
     public static void main(String[] args) throws SQLException {
         //SpringApplication.run(LironSolomonApplication.class, args);
-        System.out.println("Welcome");
+        System.out.println("Welcome to - Liron Solomon project.");
         Connect con = new Connect();
         con.connect();
         con.Select(con.connect(), 44);
