@@ -34,6 +34,17 @@ public class Connect {
         }
     }
 
+    public void Select(Connection con, int id) throws SQLException{
+        String query = "SELECT * FROM test_table WHERE id = id";
+        try (Statement stmt = con.createStatement()) {
+            int rs = stmt.executeUpdate(query);
+            con.close();
+        } catch (SQLException e) {
+            System.out.printf("Error!!");
+            throw new RuntimeException(e);
+        }
+    }
+
     public void Insert(Connection con, String text)  throws SQLException{
         String Text=text;
         String query = "INSERT INTO test_table (Text)\n" +
@@ -57,11 +68,10 @@ public class Connect {
         }
     }
 
-    public void Update(Connection con,String text1,String text2, int id1)  throws SQLException{
+    public void Update(Connection con,String text, int id)  throws SQLException{
         String query=String.format("UPDATE \"test_table\""+
                 "SET text='%s'"+
-                "WHERE text= '%s'"+
-                "AND id = %d;",text2,text1, id1);
+                "WHERE id = %d;",text, id);
         try (Statement stmt = con.createStatement()) {
             int rs = stmt.executeUpdate(query);
             con.close();
