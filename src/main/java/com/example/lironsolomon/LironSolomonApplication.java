@@ -13,6 +13,7 @@ public class LironSolomonApplication {
         System.out.println("Welcome to - Liron Solomon project.");
         Connect con = new Connect();
         con.connect();
-        con.Select(con.connect(), 44);
+        con.Insert(con.connect(), "liron");
+        con.SelectAll(con.connect());
     }
 }

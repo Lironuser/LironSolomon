@@ -5,7 +5,7 @@ public class Connect {
     public  Connection connect(){
         String jdbcURL = "jdbc:postgresql://localhost:5432/Test";
         String userName = "postgres";
-        String password = "Liron1630";
+        String password = "lironSolomon8597";
         try{
             Connection connection = DriverManager.getConnection(jdbcURL, userName, password);
             System.out.println("\nConnection complete.");
@@ -24,6 +24,26 @@ public class Connect {
             con.setAutoCommit(false);
             PreparedStatement st = con.prepareStatement(query);
             st.setInt(1, id1);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                String text = rs.getString("text");
+                int id = rs.getInt("id");
+                System.out.println("| "+text + " | " +id+" |");
+            }
+            st.close();
+            con.commit();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println("Error!!");
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void SelectAll(Connection con) throws RuntimeException {
+        String query = "SELECT * FROM test_table";
+        try (Statement stmt = con.createStatement()) {
+            con.setAutoCommit(false);
+            PreparedStatement st = con.prepareStatement(query);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 String text = rs.getString("text");
