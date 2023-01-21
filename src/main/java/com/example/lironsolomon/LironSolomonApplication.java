@@ -9,15 +9,14 @@ import java.sql.SQLException;
 public class LironSolomonApplication {
 
     public static void main(String[] args) throws SQLException {
-        //SpringApplication.run(LironSolomonApplication.class, args);
         String pass = JOptionPane.showInputDialog("Enter your password");
-        if(pass == "lironSolomon8597"){
+        if(pass == "Liron"){
             JOptionPane.showMessageDialog(null, "Welcome to - Liron Solomon project.");
             Connect con = new Connect();
             con.connect();
-            //con.Insert(con.connect(), "liron");
+            //con.Insert(con.connect(), "aylon");
             //con.Delete(con.connect(), 47);
-            //con.SelectAll(con.connect());
+            con.SelectAll(con.connect());
         }else{
             JOptionPane.showMessageDialog(null, "Your password can not be confirmed.");
         }
