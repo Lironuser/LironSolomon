@@ -19,9 +19,11 @@ public class LironSolomonApplication {
             //con.Delete(con.connect(), 47);
             //con.Update(con.connect(), Solomon, 50);
             //con.Select(con.connect(), 51);
-            test_table getData = new test_table(51, "Liron");
+            test_table getData = new test_table(56, "lj");
             getData.SelectInfo(con.connect(),list);
-            //con.SelectAll(con.connect());
+            list.get(0).setText("jio ihubib");
+            getData.UpdateInfo(con.connect(), list);
+            con.SelectAll(con.connect());
         //}else{
             //JOptionPane.showMessageDialog(null, "Your password can not be confirmed.");
         //}

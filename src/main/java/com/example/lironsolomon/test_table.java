@@ -7,10 +7,12 @@ import java.util.ArrayList;
 public class test_table {
     int id;
     String text;
-    public test_table(int id, String text){
+
+    public test_table(int id, String text) {
         this.id = id;
         this.text = text;
     }
+
     public int getId() {
         return id;
     }
@@ -19,15 +21,11 @@ public class test_table {
         return text;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public void setText(String text) {
         this.text = text;
     }
 
-    public void SelectInfo(Connection con, ArrayList<test_table> list ){
+    public void SelectInfo(Connection con, ArrayList<test_table> list) {
         String query = "SELECT * FROM test_table";
         try (Statement stmt = con.createStatement()) {
             con.setAutoCommit(false);
@@ -53,7 +51,21 @@ public class test_table {
         }
     }
 
-    public void UpdateInfo(Connection con, int id1){
-
+    public void UpdateInfo(Connection con, ArrayList<test_table> list) {
+        String query = "UPDATE test_table SET (text = ?) WHERE id = ?";
+        try {
+            con.setAutoCommit(false);
+            PreparedStatement st = con.prepareStatement(query);
+            for (test_table t : list) {
+                st.setString(1, t.text);
+                st.setInt(2, t.id);
+                st.executeUpdate();
+            }
+            con.commit();
+            st.close();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println("Error!!");
+        }
     }
 }
