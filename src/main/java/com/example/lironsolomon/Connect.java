@@ -12,14 +12,14 @@ public class Connect {
 
             return connection;
         } catch (SQLException e) {
-            System.out.printf("Error!!");
+            System.out.println("Error!!");
             throw new RuntimeException(e);
 
         }
 
     }
     public void Select(Connection con, int id1) throws RuntimeException {
-        String query = "SELECT id, text FROM test_table WHERE id =?";
+        String query = "SELECT id + text FROM test_table WHERE id =?";
         try (Statement stmt = con.createStatement()) {
             con.setAutoCommit(false);
             PreparedStatement st = con.prepareStatement(query);
@@ -71,12 +71,12 @@ public class Connect {
             con.commit();
             con.close();
         } catch (SQLException e) {
-            System.out.printf("Error!!");
+            System.out.println("Error!!");
             throw new RuntimeException(e);
         }
     }
     public void Delete(Connection con, int id1) throws SQLException{
-        String query = "DELETE FROM test_table WHERE id=?";
+        String query = "DELETE  FROM test_table WHERE id = ?";
         try (Statement stmt = con.createStatement()) {
             con.setAutoCommit(false);
             PreparedStatement st = con.prepareStatement(query);
@@ -86,7 +86,7 @@ public class Connect {
             con.commit();
             con.close();
         } catch (SQLException e) {
-            System.out.printf("Error!!");
+            System.out.println("Error!!");
             throw new RuntimeException(e);
         }
     }

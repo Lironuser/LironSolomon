@@ -15,6 +15,8 @@ public class LironSolomonApplication {
             con.connect();
             //con.Insert(con.connect(), "Liron");
             //con.Delete(con.connect(), 47);
+            //con.Update(con.connect(), Solomon, 50);
+            //con.Select(con.connect(), 51);
             con.SelectAll(con.connect());
         }else{
             JOptionPane.showMessageDialog(null, "Your password can not be confirmed.");
