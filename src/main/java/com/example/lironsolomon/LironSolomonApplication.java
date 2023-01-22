@@ -10,11 +10,11 @@ public class LironSolomonApplication {
 
     public static void main(String[] args) throws SQLException {
         String pass = JOptionPane.showInputDialog("Enter your password");
-        if(pass == "Liron"){
+        if(pass.equals("LironSolomon8597")){
             JOptionPane.showMessageDialog(null, "Welcome to - Liron Solomon project.");
             Connect con = new Connect();
             con.connect();
-            //con.Insert(con.connect(), "aylon");
+            con.Insert(con.connect(), "Liron");
             //con.Delete(con.connect(), 47);
             con.SelectAll(con.connect());
         }else{
