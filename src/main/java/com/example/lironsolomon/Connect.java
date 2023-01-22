@@ -1,5 +1,6 @@
 package com.example.lironsolomon;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class Connect {
     public  Connection connect(){
