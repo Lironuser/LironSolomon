@@ -52,4 +52,8 @@ public class test_table {
             throw new RuntimeException(e);
         }
     }
+
+    public void UpdateInfo(Connection con, int id1){
+
+    }
 }
