@@ -1,5 +1,7 @@
 package com.example.lironsolomon;
 
+import org.springframework.data.relational.core.sql.Insert;
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -50,17 +52,33 @@ public class test_table {
             throw new RuntimeException(e);
         }
     }
+     public void check(Connection con, ArrayList<test_table> list, String text1, int id1)
+    {
+        Connect connect = new Connect();
+        for (test_table i:list) {
+            if(i.getId() == id1) {
+                return;
+            }
+        }
+        try {
+            connect.Insert(con, text1);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
-    public void UpdateInfo(Connection con, ArrayList<test_table> list) {
+    }
+    public void UpdateInfo(Connection con, ArrayList<test_table> list, String text1, int id1) {
         String query = "UPDATE test_table SET (text = ?) WHERE id = ?";
         try {
             con.setAutoCommit(false);
             PreparedStatement st = con.prepareStatement(query);
             for (test_table t : list) {
-                st.setString(1, t.text);
-                st.setInt(2, t.id);
-                st.executeUpdate();
+                st.setString(1, text1);
+                st.setInt(2, id1);
+
             }
+            check(con,list, text1, id1);
+            st.executeUpdate();
             con.commit();
             st.close();
             con.close();
